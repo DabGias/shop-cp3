@@ -1,28 +1,30 @@
-import React from "react"
-import { Text } from "react-native"
+import React, { useEffect } from "react"
+import { Pressable, Text, TextInput } from "react-native"
 import { View } from "react-native"
-import { storeData, mergeData, getData, rmvData } from "../storage/Storage"
+import { getData } from "../storage/Storage"
 
-export function Home() {
-    function callBack(dados) {
-        console.debug(dados)
-    }
+export function Home({ navigation, route }) {
+    useEffect(() => {
+        function handleStatusChange(data) {
+            if (data) {
+                navigation.navigate("Cadastro")
 
-    getData(callBack, 'user')
-    storeData('user', { id: 1, name: 'Gabriel' })
+                return true
+            } 
 
-    getData(callBack, 'user')
-    storeData('user', { id: 1, name: 'Maria' })
-    getData(callBack, 'user')
+            if (data.login) {
+                navigation.navigate("Login")
 
-    mergeData('user', { id: 1, name: 'Pedro' })
-    getData(callBack, 'user')
+                return true
+            }
 
-    rmvData('user')
+            getData(handleStatusChange, 'user')
+        }
+    }, [])
 
     return(
-        <View style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
-            <Text>OK</Text>
+        <View style={{display: "flex", flex: 1, justifyContent: "center", alignItems: "center"}}>
+            <Text>Home</Text>
         </View>
     )
 }

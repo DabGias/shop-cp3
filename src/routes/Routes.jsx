@@ -18,19 +18,17 @@ export function Routes() {
     ]
 
     return(
-        <NavigationContainer>
-            <Drawer.Navigator>
-                {
-                    components.map((element, index) =>
-                        <Drawer.Screen 
-                            key={index}
-                            name={element.route}
-                            component={element.component}
-                            options={{element: element}}
-                        />
-                    )
-                }
-            </Drawer.Navigator>
-        </NavigationContainer>
+        <Drawer.Navigator>
+            {
+                components.map((element, index) =>
+                    <Drawer.Screen 
+                        key={index}
+                        name={element.route}
+                        component={element.component}
+                        options={{element: element}}
+                    />
+                )
+            }
+        </Drawer.Navigator>
     )
 }
