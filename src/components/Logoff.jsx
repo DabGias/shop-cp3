@@ -16,7 +16,7 @@ export function Logoff({ navigation }) {
 
     return(
         <View style={{display: "flex", flex: 1, justifyContent: "center", alignItems: "center"}}>
-
+            <Text>Página de Logoff</Text>
         </View>
     )
 }

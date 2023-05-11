@@ -3,10 +3,11 @@ import { Pressable, Text, TextInput, View } from "react-native";
 import { getData, mergeData } from "../storage/Storage";
 
 export function FormLogin({ navigation }) {
-    // TODO: Criar validação do formulário
-
     const [error, setError] = useState("")
-    const [form, setForm] = useState({})
+    const [form, setForm] = useState({
+        user: "",
+        pass: ""
+    })
     var data = ""
 
     useState(() => {
@@ -17,8 +18,24 @@ export function FormLogin({ navigation }) {
         getData(findData, data)
     }, [])
 
+    function setUser(value) {
+        setForm({...form, ["user"]: value})
+    }
+
+    function verifUser() {
+        return form["user"] === data["user"] ? true : false
+    }
+
+    function setPass(value) {
+        setForm({...form, ["pass"]: value})
+    }
+
+    function verifPass() {
+        return form["pass"] === data["pass"] ? true : false
+    }
+
     function validate() {
-        return (form.user && form.pass) ? true : false
+        return verifUser() && verifPass() ? true : false
     }
 
     function next() {
@@ -46,11 +63,15 @@ export function FormLogin({ navigation }) {
             <TextInput
                 value={form.pass}
                 placeholder="Usuário"
+                onChange={(value) => setUser(value)}
+                onEndEditing={validate}
             />
 
             <TextInput
                 value={form.pass}
                 placeholder="Senha"
+                onChange={(value) => setPass(value)}
+                onEndEditing={validate}
             />
 
             <Pressable
