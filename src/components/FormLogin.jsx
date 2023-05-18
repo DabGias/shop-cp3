@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Pressable, Text, TextInput, View } from "react-native";
 import { getData, mergeData } from "../storage/Storage";
+import { styles } from "../style/Style";
 
 export function FormLogin({ navigation }) {
     const [error, setError] = useState("")
@@ -57,7 +58,7 @@ export function FormLogin({ navigation }) {
     }
 
     return(
-        <View style={{display: "flex", flex: 1, justifyContent: "center", alignItems: "center"}}>
+        <View style={styles.container}>
             <Text>Login</Text>
             
             <TextInput
@@ -65,6 +66,7 @@ export function FormLogin({ navigation }) {
                 placeholder="Usuário"
                 onChange={(value) => setUser(value)}
                 onEndEditing={validate}
+                style={styles.textInput}
             />
 
             <TextInput
@@ -72,11 +74,10 @@ export function FormLogin({ navigation }) {
                 placeholder="Senha"
                 onChange={(value) => setPass(value)}
                 onEndEditing={validate}
+                style={styles.textInput}
             />
 
-            <Pressable
-                style={{backgroundColor: "red", padding: 15}}
-            >
+            <Pressable style={styles.button}>
                 <Text>Logar</Text>
             </Pressable>
         </View>

@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { mergeData } from "../storage/Storage"
-import { Text, TextInput, View } from "react-native"
-import Pressable from "react-native/Libraries/Components/Pressable/Pressable"
+import { Text, TextInput, View, Pressable } from "react-native"
+import { styles } from "../style/Style"
 
 export function FormCadastro({ navigation }) {
     const [error, setError] = useState("")
@@ -79,7 +79,7 @@ export function FormCadastro({ navigation }) {
     }
     
     return(
-        <View style={{display: "flex", flex: 1, justifyContent: "center", alignItems: "center"}}>
+        <View style={styles.row}>
             <Text>Cadastro</Text>
 
             <TextInput
@@ -87,35 +87,40 @@ export function FormCadastro({ navigation }) {
                 placeholder="Usuário"
                 onChange={(value) => setUser(value)}
                 onEndEditing={validate}
+                style={styles.textInput}
             />
             <TextInput
                 value={form.name}
                 placeholder="Nome"
                 onChange={(value) => setNome(value)}
                 onEndEditing={validate}
+                style={styles.textInput}
             />
             <TextInput
                 value={form.pass}
                 placeholder="Senha"
                 onChange={(value) => setPass(value)}
                 onEndEditing={validate}
+                style={styles.textInput}
             />
             <TextInput
                 value={form.email}
                 placeholder="E-mail"
                 onChange={(value) => setEmail(value)}
                 onEndEditing={validate}
+                style={styles.textInput}
             />
             <TextInput
                 value={form.tel}
                 placeholder="Telefone"
                 onChange={(value) => setPhone(value)}
                 onEndEditing={validate}
+                style={styles.textInput}
             />
 
             <Text>{error}</Text>
 
-            <Pressable>
+            <Pressable onPress={onPress} style={styles.button}>
                 <Text>Cadastrar</Text>
             </Pressable>
         </View>

@@ -4,14 +4,14 @@ import { View } from "react-native";
 
 export function Logoff({ navigation }) {
     useEffect(() => {
-        function getUser(value) {
+        function logoffUser(value) {
             value.login = false
 
             mergeData('user', value)
             navigation.navigate('Login')
         }
 
-        getData(getUser, 'user')
+        getData(logoffUser, 'user')
     }, [])
 
     return(
